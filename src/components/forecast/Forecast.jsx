@@ -4,6 +4,7 @@ import ForecastTile from './ForecastTile';
 const Forecast = props => {
     return(
         <div>
+            <h1>hi</h1>
             <ForecastTile 
             main = {props.data1.main}
             max = {props.data1.max}

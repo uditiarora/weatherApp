@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Forecast from './components/forecast/Forecast';
 import Error from './components/error/Error';
+import Search from './components/search/Search';
 class App extends Component{
     state = {
         city : {name : "Jaipur" },
@@ -17,7 +18,7 @@ class App extends Component{
 
     componentDidMount(){
         axios.get(
-            'http://api.apixu.com/v1/forecast.json?key=844f8999cbd546fcb47112659193007&q=Jaipur&days=7'
+            "https://api.apixu.com/v1/forecast.json?key=844f8999cbd546fcb47112659193007&q=Jaipur&days=7"
         )
         .then(response => {
             this.setState({
@@ -77,9 +78,9 @@ class App extends Component{
         const city = {...this.state.city};
         city.name = event.target.elements.city.value;
         this.setState({city : city});
-
-        axios.get(
-            'http://api.apixu.com/v1/forecast.json?key=844f8999cbd546fcb47112659193007&q=Jaipur&days=7'
+        axios
+        .get(
+            'https://api.apixu.com/v1/forecast.json?key=844f8999cbd546fcb47112659193007&q='+city.name+'&days=7'
         )
         .then(response => {
             this.setState({
@@ -130,7 +131,7 @@ class App extends Component{
 
             });
         });
-    }
+    };
     render(){
        if(this.state.error){
            return(
@@ -140,15 +141,16 @@ class App extends Component{
 
        return(
            <div>
-           <Forecast 
-           data1 = {this.state.day1}
-           data2 = {this.state.day2}
-           data3 = {this.state.day3}
-           data4 = {this.state.day4}
-           data5 = {this.state.day5}
-           data6 = {this.state.day6}
-           />
-           <h1>Actual Content</h1>
+            <Search func = {this.setOnChange}/>
+            <Forecast 
+            place = {this.state.city.name}
+            data1 = {this.state.day1}
+            data2 = {this.state.day2}
+            data3 = {this.state.day3}
+            data4 = {this.state.day4}
+            data5 = {this.state.day5}
+            data6 = {this.state.day6}
+            />
            </div>
        );
     }
