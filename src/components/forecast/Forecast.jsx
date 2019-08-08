@@ -1,10 +1,11 @@
 import React from 'react';
 import ForecastTile from './ForecastTile';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const Forecast = props => {
     return(
-        <div>
-            <h1>hi</h1>
+        <div class = "row">
             <ForecastTile 
             main = {props.data1.main}
             max = {props.data1.max}

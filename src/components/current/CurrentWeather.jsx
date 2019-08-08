@@ -8,7 +8,7 @@ const CurrentWeather = props => {
     const minute = date.getMinutes();
 
     return(
-        <div>
+        <div class = "text-center">
             <p>{props.city}</p>
             <p>{day} {hour}:{minute}</p>
             <img src = {props.main} alt = "icon"></img>

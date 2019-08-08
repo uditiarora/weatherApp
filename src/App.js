@@ -3,6 +3,8 @@ import axios from 'axios';
 import Forecast from './components/forecast/Forecast';
 import Error from './components/error/Error';
 import Search from './components/search/Search';
+import CurrentWeather from './components/current/CurrentWeather';
+import classes from './index.css'
 class App extends Component{
     state = {
         city : {name : "Jaipur" },
@@ -140,8 +142,14 @@ class App extends Component{
        }
 
        return(
-           <div>
+           <div class = "container" id = "grad1">
             <Search func = {this.setOnChange}/>
+            <CurrentWeather 
+            city = {this.state.city.name}
+            main = {this.state.weather.main}
+            temp = {this.state.weather.temp}
+            feel = {this.state.weather.feel}
+            />
             <Forecast 
             place = {this.state.city.name}
             data1 = {this.state.day1}
